@@ -1,4 +1,13 @@
 #include <iostream>
+#include <string>
+
+//Declares a point as an X and Y value
+struct Point
+{
+    //Declare variables
+    int X;
+    int Y;
+};
 
 //Entry point
 int main()
@@ -75,7 +84,7 @@ int main()
     int i = 0;
     long l = 5L;
     unsigned int ui = 3U;
-    double pi = 3.14159;
+    //float pi = 3.14159;
     double largeNumber = 10E100;
     char c = 'A';
     std::string name = "Bob";
@@ -101,19 +110,87 @@ int main()
     //Arithmetic operators
     // + - * / % (int modulus)
     // arith_op ::= Et op Et
+    //  Modulus only defined for integer values
+    //  Division for integers returns integers
     shapeArea = shapeLength * shapeWidth;
     int remainder = 10 % 3; // 1
     int result = 10 / 3; // 3
     double dresult = 10.0 / 3.0; // 3.333
 
     // unary_op ::= + Et | - Et
+    //   Unary positive does nothing
+    //   Unary negative negates the expression
     int positiveValue = 10;
     int negativeValue = -positiveValue;
 
-    //Scope
     // block-statement ::= { S* }
+    //   Variables declared in block are scoped to the block
+    //   Useful for grouping statements
     {
         int newVariable = 10;
     }
     //std::cout << newVariable;
+
+    //String stuff
+    // Not a primitive
+    // Doesn't work outside C++
+    std::string message = "Hello";
+    message = message + " World"; // message += " World";
+    message = message + " "  + name;
+
+    std::string empty;
+    empty = empty + "Hello";
+
+    // Combination operators
+    //   V op= E
+    empty += " World"; // empty = empty + " World"
+
+    // C++ is strongly typed
+    int number = 10;
+    //number = "20"; // Compiler error, cannot change type of variable
+
+    //Type inferencing (C++11)
+    //  auto ::= compiler figures it out 
+    // Only usable in variable decls and a few other places
+    // Must use an init expression when declaring the variable
+    auto payRate = 45.6;   //    double payRate = 45.6;
+    //payRate = "45.6";
+    double x = payRate;
+
+    //Area of a circle = PI*r2
+    double pi = 3.14159;
+    double radius = 10;
+
+    //constant expression = expression that is calculated at compile time, primitive
+    //  4+5 * 8 = 44
+    //Literals are great unless you need them everywhere (constant-expression)
+    //Variables are better at reuse but may be accidently changed
+    //Const (constant expression with name, type and value and read only
+    double area = 3.14159 * radius * radius;
+    area = pi * radius * radius;
+    //pi = 10; // Error
+
+    //Structure - a group of related data points
+    // Cannot use structs with cout
+    // Struct variables are undefined
+    //Prompt user for a point
+    //int x, y;
+    //Point pt;
+    Point pt {0}; //Zero initializes fields
+    std::cout << "Enter X value: ";
+    pt.X = 5;
+    std::cout << "Enter Y value: ";
+    pt.Y = 10;
+
+    //(5, 10)
+    std::cout << "(" << pt.X << ", " << pt.Y << ")";
+
+    //Struct assignment is value assignment, all fields are copied
+    Point pt2 = pt;
 }
+
+struct point2
+{
+    int x;
+    int y;
+};
