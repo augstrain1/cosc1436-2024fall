@@ -1,5 +1,10 @@
 #include <iostream>
 #include <string> 
+#include <cmath> //C math functions
+#include <iomanip> //Formatted output
+
+//Include the std namespace so we don't have to prefix it on everything
+using namespace std;
 
 int main()
 {
@@ -63,4 +68,73 @@ int main()
 
     float floatValue = 1e38 * 2e20;
     std::cout << floatValue << std::endl;
+
+    //Typecasting - you convert an expression to another type explicitly
+    int totalSales = 50000;
+    int departments = 8;
+
+    // static_cast<T>(E) => preferred
+    // (T)E => C-style, not recommended
+    //  Must be allowable
+    //double averageSalesPerDepartment = static_cast<double>(totalSales) / departments;
+    double averageSalesPerDepartment = totalSales / static_cast<double>(departments);
+    averageSalesPerDepartment = totalSales / (double)departments;
+
+    //Compiler error, cannot convert from string to int
+    std::string someString = "Hello";
+    //int someStringNumber = static_cast<int>(someString);
+    //int someStringNumber = (int)someString;
+
+    //Use cast to truncated data w/o compiler warning
+    int truncatedValue = static_cast<int>(floatValue);
+
+    //Math functions
+    // pow(x,y) => x to the y power
+    // sqrt(x) => square root of x
+    // exp(x) => e to the x power
+    // log(x) => log of x log(exp(x)) = x
+    // sin(x), cos(x), tan(x), cot(x), sec(x), csc(x), ...h
+    // abs(x) => positive value of x
+    // ceil(x) => smallest possible int value >= x
+    // floor (x) => largest possible int value <= x
+    // trunc(x) => rounds toward zero
+    // round(x) => rounds to the nearest integer (midpoint rounding)
+    double xValue = 45.6;
+    double mathResult;
+
+    std::cout << pow(xValue, 2); //xValue * xValue
+    std::cout << sqrt(xValue);
+
+    std::cout << exp(2); // e nth power, e = 2.718
+    std::cout << log(5.4); // root of e
+
+    std::cout << abs(-45); // positive x = 45
+
+    std::cout << ceil(xValue);    // 46
+    std::cout << floor(xValue);   // 45
+
+    std::cout << trunc(xValue);   // 45
+    std::cout << round(xValue);   // 46
+
+    //Formatted output
+    std::cout << 4.567891241415151 << std::endl;
+    std::cout << 5.67e3 << std::endl;
+
+    // Create a table
+    // Manipulator | behavior | Persist
+    // --------
+    //  setw(i) | pads the value to i | No
+    //  left | Left justifies | Yes
+    //  right | Right justifies (default) | Yes
+    //  fixed | Forces fixed point notation | Yes
+    //  setprecision(i) | Sets precision of floats | Yes
+    //  setfill(c) | Character to pad with | Yes
+    std::cout << std::left << std::setw(8) << "Student " << setw(6) << "Grade " << "Letter " << std::endl;
+    std::cout << setw(20) << setfill('-') << "" << std::endl;
+    //cout << fixed;
+    cout << setprecision(2);
+    std::cout << std::setw(8) << "Bob" << setw(6) << 95.67 << setw(6) << "A" << std::endl;
+    std::cout << std::setw(8) << "Sue" << setw(6) << 98.543 << setw(6) << "A" << std::endl;
+    std::cout << std::setw(8) << "Jim" << setw(6) << 84.567 << setw(6) << "B" << std::endl;
+    std::cout << std::setw(8) << "Jan" << setw(6) << 78.987 << setw(6) << "C" << std::endl;
 }
