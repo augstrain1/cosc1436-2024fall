@@ -14,7 +14,7 @@ int main()
 
 	std::string userName;
 
-	std::cout << "Please Input Your Name: \n";
+	std::cout << "Please Input Your Name: \ n";
 	std::cin >> userName;
 	std::cout << std::endl;
 
