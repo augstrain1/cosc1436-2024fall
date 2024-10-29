@@ -52,7 +52,68 @@ void TestPassByReference()
     Display(rc);
 };
 
+void GradeArrayDemo()
+{
+    const int MaxGrades = 20;
+    double dummyValue2 = -1;
+    int grades[MaxGrades];
+    double dummyValue = 0;
+
+    int estimatedMaxArraySize = //Size of array / size of element
+        sizeof(grades) / sizeof(int);
+
+    int count = 0;
+    for (int index = 0; index < MaxGrades; ++index)//, ++count)
+    {
+        std::cout << "Enter a grade: ";
+        std::cin >> grades[index];
+        //grades[index] = 100;
+
+        if (grades[index] <= 0)
+            break;
+
+        ++count;
+    };
+
+    //for (int index = 0; index < MaxGrades; ++index) for entire array
+    for (int index = 0; index < MaxGrades; ++index)
+    {
+        std::cout << grades[index] << std::endl;
+    };
+
+    int indexToChange;
+    do
+    {
+        std::cout << "Enter the index of the grade to change: ";
+        std::cin >> indexToChange;
+    } while (indexToChange < 0 || indexToChange >= MaxGrades);
+
+    int newGrade;
+    std::cout << "Enter the new grade: ";
+    std::cin >> newGrade;
+
+    grades[indexToChange] = newGrade;
+}
+
+void InitArrayDemo()
+{
+    const int MaxRates = 100;
+    double payRates[MaxRates] = {0}; //Zero initialize
+
+    ////Zero init
+    //for (int index = 0; index < MaxRates; ++index)
+    //    payRates[index] = 0;
+}
+
 int main()
+{
+    double gradeAverages[100];
+    GradeArrayDemo();
+
+    InitArrayDemo();
+}
+
+void NameArrayDemo()
 {
     //Array is a set of related data
     /*std::string student1;
@@ -77,12 +138,5 @@ int main()
         // students sub 0
         // Array access operator
         students[index] = student;
-    };
-
-    //Print roster
-    for (int index = 0; index < MaxStudents; ++index)
-    {
-        if (students[index] != "")
-            std::cout << students[index] << std::endl;
-    };
+    }
 }
