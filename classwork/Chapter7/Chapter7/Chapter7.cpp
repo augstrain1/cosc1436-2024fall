@@ -194,12 +194,62 @@ void UseArrayDemo()
     CopyArray(array3, 20, array2, 20);
 }
 
+void DisplayArray(int values[], int size, int valueWidth, int maxCellsPerRow)
+{
+    std::cout << std::left;
+
+    for (int index = 0; index < size; ++index)
+    {
+        std::cout << std::setw(valueWidth) << values[index] << " ";
+
+        //If we have printed out maxCellsPerRow values, then newline
+        if (index > 0 && index % maxCellsPerRow == 0)
+            std::cout << std::endl;
+    };
+
+    std::cout << std::endl;
+}
+
+//Multi-D table passed like single-D tables
+//All dimensions other than rows must be fixed at compile time
+void DisplayTable(int values[10], int size)
+{
+    for (int row = 0; row < size; ++row)
+        DisplayArray(values[row], 10, 5, 10);
+        /* for (int col =0; col < 10; ++col)
+        ;*/
+
+}
+
+void TableDemo()
+{
+    int values[] = {1, 2, 3, 4, 5};
+    DisplayArray(values, 5, 10, 3);
+
+    //[rows][cols] - compile time size for all dimensions
+    int multiplyTable[500][1000];
+
+    for (int row = 0; row < 5; ++row)
+        for (int col = 0; col < 10; ++col)
+            multiplyTable[row][col] = (row + 1) * (col + 1);
+
+    //Don't do this...
+    // Column major ordering - columns are enumerated, then rows
+    // 
+    ////Display table
+    //for (int row = 0; row < 5; ++row)
+    //{
+    //    for (int col = 0; col < 10; ++col)
+    //        std::cout << std::setw(10) << multiplyTable[row][col];
+
+    //    std::cout << std::endl;
+    //}
+   
+}
+
 int main()
 {
-    double gradeAverages[100];
-    GradeArrayDemo();
-
-    InitArrayDemo();
+    TableDemo();
 }
 
 void NameArrayDemo()
