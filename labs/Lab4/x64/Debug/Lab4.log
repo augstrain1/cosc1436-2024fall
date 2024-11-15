@@ -1,0 +1,5 @@
+﻿  Lab4.cpp
+C:\Users\augst\source\repos\labs\Lab4\Lab4\Lab4.cpp(95,9): warning C4101: 'values': unreferenced local variable
+C:\Users\augst\source\repos\labs\Lab4\Lab4\Lab4.cpp(97,9): warning C4101: 'size': unreferenced local variable
+C:\Users\augst\source\repos\labs\Lab4\Lab4\Lab4.cpp(96,9): warning C4101: 'months': unreferenced local variable
+  Lab4.vcxproj -> C:\Users\augst\source\repos\labs\Lab4\x64\Debug\Lab4.exe
