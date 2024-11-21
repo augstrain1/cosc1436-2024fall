@@ -213,7 +213,6 @@ void InitializeEmployeeByPtr(int* employee)
         std::cin >> *employee;
 
     }
-
 }
 
 void PassByRefVsPointerDemo()
@@ -230,10 +229,109 @@ void PassByRefVsPointerDemo()
     InitializeEmployeeByPtr(nullptr);
 }
 
+Employee* CreateEmployee()
+{
+    Employee* ptrEmployee = new Employee();
+
+    return ptrEmployee;
+}
+
+int* FindElement(int values[], int size, int desiredValue)
+{
+    for (int index = 0; index < size; ++index)
+    {
+        if (values[index] == desiredValue)
+            return &values[index];
+    }
+
+    return nullptr;
+}
+
+double g_SomeVariable = 9.18175;
+
+double* GetConstant()
+{
+    return &g_SomeVariable;
+}
+
+double* DontDoThis()
+{
+    double someValue = 1.2914;
+
+    return &someValue;
+}
+
+void PointerReturnDemo()
+{
+    //Pointer as return type
+    //  New instance from function (caller is responsible for lifetime)
+    // RAII - Resource Acquisition is Initialization 
+    Employee* pNewEmployee = CreateEmployee();
+    delete pNewEmployee;
+
+    // Pointer is to memory that the caller owns
+    int values[100] = {0};
+    values[50] = 20;
+    int* pMatch = FindElement(values, 100, 20);
+
+    // Pointer to global object
+    double* pConstant = GetConstant();
+}
+
+// message is a reference to a constant string
+int ReadInt(std::string const& message)
+{
+    //Constant, cannot modify
+    //message = "Broke";
+    std::cout << message;
+
+    int value;
+    std::cin >> value;
+
+    return value;
+}
+
+void ConstantPointerDemo()
+{
+    std::string message = "Enter a number: ";
+    int value = ReadInt("Enter a number: ");
+
+    // non-const vs const
+    int nonConstValue = 10;
+    const int constValue = 20;
+
+    //Non-const are readable/writable
+    nonConstValue = 20;
+
+    //Const are read only
+    //constValue = 30;
+
+    //Pointer can be dereferenced to read/write
+    int* pNonConst = &nonConstValue;
+    *pNonConst = 40;
+
+    //cannot assign a const int* to an int*
+    //pNonConst = &constValue;
+    *pNonConst = 50;
+
+    //non-const to const is allowed
+    int const* pConst = &constValue;
+    pConst = &nonConstValue;
+
+    nonConstValue = (int)45.6; //C-style
+    nonConstValue = static_cast<int>(45.6); //C++ cast
+
+    // const_cast<T> casts T to either const T or T depending on what it is
+    pConst = const_cast<int*>(&nonConstValue);
+    pNonConst = const_cast<int*>(&constValue);
+    *pNonConst = 50; 
+}
+
 int main()
 {
     //StackDemo();
     //EmptyDemo();
     //DynamicMemoryDemo();
-    NewArrayDemo();
+    //NewArrayDemo();
+    PointerReturnDemo();
 }
